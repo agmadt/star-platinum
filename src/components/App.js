@@ -4,6 +4,9 @@ import { Grid, Divider } from 'semantic-ui-react';
 
 import Home from './Home/Home';
 import Sidebar from './Sidebar/Sidebar';
+import Detail from './Detail/Detail';
+import Tagged from './Tagged/Tagged';
+import AskQuestion from './AskQuestion/AskQuestion';
 
 class App extends Component {
   render() {
@@ -20,8 +23,9 @@ class App extends Component {
             <Grid.Column width={12}>
               <Switch>
                 <Route exact path="/" component={ Home } />
-                <Route exact path="/questions/ask" component={ Home } />
-                <Route exact path="/questions/tagged/:tag" component={ Home } />
+                <Route exact path="/questions/ask" component={ AskQuestion } />
+                <Route exact path="/questions/tagged/:tag" component={ Tagged } />
+                <Route exact path="/questions/:id/:slug" component={ Detail } />
               </Switch>
             </Grid.Column>
           </Grid>
