@@ -1,3 +1,3 @@
-##Star Platinum
+#Star Platinum
 
 Question and Answer Frontend
