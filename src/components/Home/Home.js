@@ -27,7 +27,7 @@ export default class Home extends Component {
             <Grid.Column width={16}>
               <Segment stacked>
                 <div className="title" onClick={ this.changeToDetailPage }>Lorem</div>
-              <div className="content" onClick={ this.changeToDetailPage }>Lorem ipsum do ut ut incididunt dolore non veniam in elit amet aute aute ut amet velit non nulla consequat ad pariatur dolore cupidatat laboris reprehenderit veniam sunt nisi ad qui officia quis magna cillum deserunt non ea tempor dolor esse.</div>
+                <div className="content" onClick={ this.changeToDetailPage }>Lorem ipsum do ut ut incididunt dolore non veniam in elit amet aute aute ut amet velit non nulla consequat ad pariatur dolore cupidatat laboris reprehenderit veniam sunt nisi ad qui officia quis magna cillum deserunt non ea tempor dolor esse.</div>
                 <div className="tags">
                   <Label as={Link} to="/questions/tagged/insert">Insert</Label>
                   <Label as={Link} to="/questions/tagged/the">The</Label>

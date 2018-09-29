@@ -26,6 +26,8 @@ class App extends Component {
                 <Route exact path="/questions/ask" component={ AskQuestion } />
                 <Route exact path="/questions/tagged/:tag" component={ Tagged } />
                 <Route exact path="/questions/:id/:slug" component={ Detail } />
+
+                <Route exact path="/login" component={ Home } />
               </Switch>
             </Grid.Column>
           </Grid>

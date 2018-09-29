@@ -17,7 +17,7 @@ class Sidebar extends Component {
       <React.Fragment>
         <Menu pointing vertical>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} as={Link} to="/" />
-          <Menu.Item name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick} as={Link} to="/profile" />
+          <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick} as={Link} to="/login" />
         </Menu>
       </React.Fragment>
     );

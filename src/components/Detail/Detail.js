@@ -78,7 +78,7 @@ class Detail extends Component {
                       <label>Body</label>
                       <textarea></textarea>
                     </Form.Field>
-                    <Button>Post Question</Button>
+                    <Button>Post Answer</Button>
                   </Form>
                 </Segment>
               </Grid.Column>
