@@ -44,13 +44,6 @@ export default class Home extends Component {
                   <Segment stacked key={item.id}>
                     <div className="title" onClick={ this.changeToDetailPage(item.id) }>{ item.title }</div>
                     <div className="content" onClick={ this.changeToDetailPage(item.id) }>{ item.content }</div>
-                    <div className="tags">
-                      <Label as={Link} to="/questions/tagged/insert">Insert</Label>
-                      <Label as={Link} to="/questions/tagged/the">The</Label>
-                      <Label as={Link} to="/questions/tagged/question">Question</Label>
-                      <Label as={Link} to="/questions/tagged/tag">Tag</Label>
-                      <Label as={Link} to="/questions/tagged/here">Here</Label>
-                    </div>
                   </Segment>
                   ))
                 }

@@ -60,13 +60,6 @@ class Detail extends Component {
                       <div className="content">
                         { question.content }
                       </div>
-                      <div className="tags">
-                        <Label as={Link} to="/questions/tagged/insert">Insert</Label>
-                        <Label as={Link} to="/questions/tagged/the">The</Label>
-                        <Label as={Link} to="/questions/tagged/question">Question</Label>
-                        <Label as={Link} to="/questions/tagged/tag">Tag</Label>
-                        <Label as={Link} to="/questions/tagged/here">Here</Label>
-                      </div>
                       <div className="footer">
                         <Label as='a' color='teal'>
                           { question.user }
