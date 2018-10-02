@@ -1,8 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
-import 'semantic-ui-css/semantic.min.css';
+import '../node_modules/semantic-ui-css/semantic.min.css';
+import { Provider } from 'mobx-react';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import commonStore from './stores/commonStore';
+import authStore from './stores/authStore';
+import questionStore from './stores/questionStore';
+import answerStore from './stores/answerStore';
+
+const stores = {
+	commonStore,
+	authStore,
+	questionStore,
+	answerStore
+};
+
+ReactDOM.render((
+	<Provider {...stores}>
+		<App />
+	</Provider>
+), document.getElementById('root'));

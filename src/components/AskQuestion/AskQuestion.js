@@ -1,8 +1,46 @@
 import React, { Component } from 'react';
 import { Grid, Button, Form } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
 
+@inject('commonStore', 'authStore', 'questionStore')
+@observer
+@withRouter
 class AskQuestion extends Component {
+
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        title: '',
+        content: '',
+        user: this.props.authStore.user.email
+      }
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(ev) {
+      const name = ev.target.name;
+      const value = ev.target.value;
+
+      this.setState({
+        [name]: value
+      })
+    }
+
+    handleSubmit(ev) {
+      this.props.questionStore.postQuestion(this.state);
+
+      this.setState({
+        title: '',
+        content: ''
+      })
+
+      this.props.history.push('/');
+    }
+
     render() {
         return (
           <React.Fragment>
@@ -12,16 +50,16 @@ class AskQuestion extends Component {
               </Grid.Row>
               <Grid.Row>
                 <Grid.Column width={16}>
-                  <Form>
+                  <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                       <label>Title</label>
-                      <input placeholder='Title' />
+                      <input placeholder='Title' name="title" onChange={this.handleChange} value={this.state.title} />
                     </Form.Field>
                     <Form.Field>
                       <label>Body</label>
-                      <textarea></textarea>
+                      <textarea name="content" onChange={this.handleChange} value={this.state.content}></textarea>
                     </Form.Field>
-                    <Button as={Link} to="/">Post Question</Button>
+                    <Button type="submit">Post Question</Button>
                   </Form>
                 </Grid.Column>
               </Grid.Row>

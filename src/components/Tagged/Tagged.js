@@ -10,9 +10,7 @@ class Tagged extends Component {
   }
 
   changeToDetailPage(ev) {
-    this.props.history.push({
-      pathname: '/questions/1/lorem'
-    })
+    this.props.history.push('/questions/1/lorem')
   }
 
   render() {

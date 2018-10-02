@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 import { Grid, Button, Segment, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+import axios from 'axios';
 
+@inject('commonStore', 'questionStore')
+@observer
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.changeToDetailPage = this.changeToDetailPage.bind(this);
+    this.state = {
+      questions: []
+    }
+
   }
 
-  changeToDetailPage(ev) {
+  changeToDetailPage = e => ev => {
     this.props.history.push({
-      pathname: '/questions/1/lorem'
+      pathname: '/questions/' + e
     })
   }
 
+  componentWillMount() {
+    this.props.commonStore.setMessage('')
+
+    this.props.questionStore.loadQuestions();
+  }
+
   render() {
+    const { message } = this.props.commonStore;
     return (
       <React.Fragment>
         <Grid container>
@@ -25,17 +39,21 @@ export default class Home extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>
-              <Segment stacked>
-                <div className="title" onClick={ this.changeToDetailPage }>Lorem</div>
-                <div className="content" onClick={ this.changeToDetailPage }>Lorem ipsum do ut ut incididunt dolore non veniam in elit amet aute aute ut amet velit non nulla consequat ad pariatur dolore cupidatat laboris reprehenderit veniam sunt nisi ad qui officia quis magna cillum deserunt non ea tempor dolor esse.</div>
-                <div className="tags">
-                  <Label as={Link} to="/questions/tagged/insert">Insert</Label>
-                  <Label as={Link} to="/questions/tagged/the">The</Label>
-                  <Label as={Link} to="/questions/tagged/question">Question</Label>
-                  <Label as={Link} to="/questions/tagged/tag">Tag</Label>
-                  <Label as={Link} to="/questions/tagged/here">Here</Label>
-                </div>
-              </Segment>
+              { message ? (<Segment>{message}</Segment>) : ''}
+              { this.props.questionStore.questions.map(item => (
+                  <Segment stacked key={item.id}>
+                    <div className="title" onClick={ this.changeToDetailPage(item.id) }>{ item.title }</div>
+                    <div className="content" onClick={ this.changeToDetailPage(item.id) }>{ item.content }</div>
+                    <div className="tags">
+                      <Label as={Link} to="/questions/tagged/insert">Insert</Label>
+                      <Label as={Link} to="/questions/tagged/the">The</Label>
+                      <Label as={Link} to="/questions/tagged/question">Question</Label>
+                      <Label as={Link} to="/questions/tagged/tag">Tag</Label>
+                      <Label as={Link} to="/questions/tagged/here">Here</Label>
+                    </div>
+                  </Segment>
+                  ))
+                }
             </Grid.Column>
           </Grid.Row>
         </Grid>
