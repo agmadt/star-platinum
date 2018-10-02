@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Grid, Divider, Progress } from 'semantic-ui-react';
+import { inject, observer } from 'mobx-react';
 
 import Home from './Home/Home';
 import Sidebar from './Sidebar/Sidebar';
@@ -10,6 +11,8 @@ import AskQuestion from './AskQuestion/AskQuestion';
 import Login from './Login/Login';
 import Profile from './Profile/Profile';
 
+@inject('authStore')
+@observer
 class App extends Component {
 
   render() {
@@ -26,9 +29,9 @@ class App extends Component {
             <Grid.Column width={12}>
               <Switch>
                 <Route exact path="/" component={ Home } />
-                <Route exact path="/questions/ask" component={ AskQuestion } />
+                <Route exact path="/questions/ask" render={ (props) => this.props.authStore.user.email ? (<AskQuestion />) : <Redirect to="/" /> } />
                 <Route exact path="/questions/tagged/:tag" component={ Tagged } />
-                <Route exact path="/questions/:id" component={ Detail } />
+                <Route exact path="/questions/show/:id" component={ Detail } />
 
                 <Route exact path="/login" component={ Login } />
                 <Route exact path="/profile" component={ Profile } />

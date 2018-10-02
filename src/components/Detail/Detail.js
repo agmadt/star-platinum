@@ -51,7 +51,7 @@ class Detail extends Component {
           <Grid container>
             <Grid.Row>
               <Grid.Column width={12}><h1>{ question.title }</h1></Grid.Column>
-              <Grid.Column width={4}><Button fluid content='Ask Question' primary as={Link} to="/questions/ask" /></Grid.Column>
+              { this.props.authStore.user.email ? (<Grid.Column width={4}><Button fluid content='Ask Question' primary as={Link} to="/questions/ask" /></Grid.Column>) : '' }
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={16}>
@@ -79,15 +79,17 @@ class Detail extends Component {
                     </div>
                   </Segment>
                 )) }
-                <Segment color='blue' stacked>
-                  <Form onSubmit={this.handleSubmit}>
-                    <Form.Field>
-                      <label>Your Answer</label>
-                      <textarea onChange={this.handleChange} name="content" value={this.state.content}></textarea>
-                    </Form.Field>
-                    <Button>Post Answer</Button>
-                  </Form>
-                </Segment>
+                { this.props.authStore.user.email
+                  ? (<Segment color='blue' stacked>
+                      <Form onSubmit={this.handleSubmit}>
+                        <Form.Field>
+                          <label>Your Answer</label>
+                          <textarea onChange={this.handleChange} name="content" value={this.state.content}></textarea>
+                        </Form.Field>
+                        <Button>Post Answer</Button>
+                      </Form>
+                    </Segment>)
+                  : '' }
               </Grid.Column>
             </Grid.Row>
           </Grid>

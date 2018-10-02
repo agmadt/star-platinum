@@ -29,7 +29,7 @@ class Login extends Component {
 
   handleSubmit(ev) {
     this.props.authStore.setEmail(this.state.email);
-    this.props.history.push('/questions/1/lorem')
+    this.props.history.push('/')
   }
 
   render() {

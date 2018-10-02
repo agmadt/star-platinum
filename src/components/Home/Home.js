@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import axios from 'axios';
 
-@inject('commonStore', 'questionStore')
+@inject('commonStore', 'questionStore', 'authStore')
 @observer
 export default class Home extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class Home extends Component {
 
   changeToDetailPage = e => ev => {
     this.props.history.push({
-      pathname: '/questions/' + e
+      pathname: '/questions/show/' + e
     })
   }
 
@@ -35,7 +35,7 @@ export default class Home extends Component {
         <Grid container>
           <Grid.Row>
             <Grid.Column width={12}><h1>All Questions</h1></Grid.Column>
-            <Grid.Column width={4}><Button fluid content='Ask Question' primary as={Link} to="/questions/ask" /></Grid.Column>
+            { this.props.authStore.user.email ? (<Grid.Column width={4}><Button fluid content='Ask Question' primary as={Link} to="/questions/ask" /></Grid.Column>) : '' }
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={16}>

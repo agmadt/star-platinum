@@ -18,7 +18,7 @@ class Profile extends Component {
 
   handleLogout(ev) {
     this.props.authStore.logout();
-    this.props.history.push('/questions/1/lorem')
+    this.props.history.push('/')
   }
 
   render() {
